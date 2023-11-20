@@ -1,25 +1,23 @@
-import express, { Router } from "express"
+import express from "express"
 import bodyParser from "body-parser"
 import cors from "cors"
-import ServerlessHttp from "serverless-http"
 import connectDB from "./database/index.js"
 import { getGames } from "./controllers/index.js"
 
 connectDB()
 
 const app = express()
-const router = Router()
 
 app.use(cors())
 app.use(bodyParser.json())
 
-router.get("/games", async (req, res) => {
+app.get("/games", async (req, res) => {
     const games = await getGames()
     console.log(games)
 
     res.json({ ...games[0] })
 })
 
-app.use("/api/", router)
-
-export const handler = ServerlessHttp(app)
+app.listen(process.env.PORT || 8000, (err) => {
+    err ? console.log(err) : console.log(`Connection at 8000 is successful.`)
+})
