@@ -23,9 +23,8 @@ const GameSchema = new Schema({
     players : [
         {
             userId : Number,
-            userbame : String,
-            activeTanks : Number,
-            reserveTanks : Number
+            username : String,
+            tanks : Number
         }
     ],
     state : {
