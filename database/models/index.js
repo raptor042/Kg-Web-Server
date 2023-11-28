@@ -35,7 +35,7 @@ const GameSchema = new Schema({
     duration : { 
         type : Number,
         min : 1,
-        max : 5,
+        max : 2,
         required : true
     },
     winner : String
