@@ -2,7 +2,7 @@ import express from "express"
 import bodyParser from "body-parser"
 import cors from "cors"
 import connectDB from "./database/index.js"
-import { deactivate, getGames } from "./controllers/index.js"
+import { activate, deactivate, getGames } from "./controllers/index.js"
 
 connectDB()
 
@@ -16,6 +16,13 @@ app.get("/games", async (req, res) => {
     console.log(games)
 
     res.status(200).json({ ...games[0] })
+})
+
+app.get("/activate/:id", async (req, res) => {
+    const response = await activate(req.params.id)
+    console.log(response)
+
+    res.status(200).send(response)
 })
 
 app.get("/deactivate/:id", async (req, res) => {
