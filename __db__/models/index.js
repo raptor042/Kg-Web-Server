@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     referral_link : String,
     balance : { 
         type : Number,
-        default : 0 
+        default : 0
     }
 })
 

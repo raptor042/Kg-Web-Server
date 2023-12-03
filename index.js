@@ -3,7 +3,7 @@ import bodyParser from "body-parser"
 import cors from "cors"
 import connectDB from "./__db__/index.js"
 import { activate, deactivate, getGames } from "./controllers/index.js"
-import { transfer } from "./__web3__/index.js"
+import { balance, transfer } from "./__web3__/index.js"
 
 connectDB()
 
@@ -31,6 +31,13 @@ app.get("/games", async (req, res) => {
     console.log(games)
 
     res.status(200).json({ ...games[0] })
+})
+
+app.get("/balance/:account", async (req, res) => {
+    const { account } = req.params
+    const _balance = await balance(account)
+
+    res.status(200).json({ _balance })
 })
 
 app.get("/transfer/:to/:amount", async (req, res) => {
