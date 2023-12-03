@@ -1958,11 +1958,11 @@
 	},
 	"sources": {
 		"contracts/EMPIRE.sol": {
-			"keccak256": "0x027dc944e10fdb114169e3d69fc0871bc56db262f6c3fe4146aca62e4a3bc985",
+			"keccak256": "0xe4a89769534096ed4bf0d9bef8868b7392db2f0d9c3751e938c8521533ee9341",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://587d2898c35c86bcdbeff30e45cbd8aa20958d38c1821ca339ffdbfdbb629c19",
-				"dweb:/ipfs/QmPAh7CY92LHKSMzXzrWQ5PiDTmSuZfn33XGsbBvjbFiQk"
+				"bzz-raw://807ab2d728f623bf7d61b7b82e18f4e6ff8c2c20f4993d5b5e8b5e0bfe5b3135",
+				"dweb:/ipfs/QmcD5CAsDS4TSnWfsQYepEEPhisqBGyrtYPR74jmBMwhur"
 			]
 		}
 	},

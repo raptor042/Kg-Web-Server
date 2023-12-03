@@ -5,7 +5,7 @@ config()
 
 const { BSC_TESTNET, PRIVATE_KEY } = process.env
 
-export const EMPIRE = "0x0093D963A9955E6Ccc8BcE2633a260c0A27E9316"
+export const EMPIRE = "0x472D49EBa822A866e2dab44a4e85A3Ea97AC6fB2"
 
 export const getProvider = () => {
     return new ethers.JsonRpcProvider(BSC_TESTNET)
