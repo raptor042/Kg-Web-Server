@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     },
     username : String,
     address : String,
+    referral_link : String,
     balance : { 
         type : Number,
         default : 0 
@@ -37,8 +38,7 @@ const GameSchema = new Schema({
         min : 1,
         max : 3,
         required : true
-    },
-    winner : String
+    }
 })
 
 export const GameModel = model("Game", GameSchema)
