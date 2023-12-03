@@ -1,8 +1,9 @@
 import express from "express"
 import bodyParser from "body-parser"
 import cors from "cors"
-import connectDB from "./database/index.js"
+import connectDB from "./__db__/index.js"
 import { activate, deactivate, getGames } from "./controllers/index.js"
+import { transfer } from "./__web3__/index.js"
 
 connectDB()
 
@@ -10,13 +11,6 @@ const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
-
-app.get("/games", async (req, res) => {
-    const games = await getGames()
-    console.log(games)
-
-    res.status(200).json({ ...games[0] })
-})
 
 app.get("/activate/:id", async (req, res) => {
     const response = await activate(req.params.id)
@@ -30,6 +24,20 @@ app.get("/deactivate/:id", async (req, res) => {
     console.log(response)
 
     res.status(200).send(response)
+})
+
+app.get("/games", async (req, res) => {
+    const games = await getGames()
+    console.log(games)
+
+    res.status(200).json({ ...games[0] })
+})
+
+app.get("/transfer/:to/:amount", async (req, res) => {
+    const { to, amount } = req.params
+    await transfer(to, amount)
+
+    res.status(200).send("Successful")
 })
 
 app.listen(process.env.PORT || 8000, (err) => {

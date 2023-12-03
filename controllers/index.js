@@ -1,4 +1,4 @@
-import { GameModel } from "../database/models/index.js"
+import { GameModel } from "../__db__/models/index.js"
 
 export const getGames = async () => {
     try {
@@ -19,7 +19,7 @@ export const activate = async (id) => {
         return game ? "Success" : "Failed"
     } catch (err) {
         console.log(err)
-    } 
+    }
 }
 
 export const deactivate = async (id) => {
