@@ -38,13 +38,12 @@ export const activate = async (id) => {
 export const deactivate = async (id, winner) => {
     try {
         const game = await GameModel.findOneAndUpdate({ gameId : id }, { state : "Deactive", winner })
-        console.log(game, id)
+        console.log(game, id, winner)
 
-        const user = await getUser(game.winner)
+        const user = await UserModel.findOneAndUpdate({ userId : winner }, { $inc : { balance : game.stake } })
+        console.log(user)
 
-        const _transfer = await transfer(EMPIRE_WALLET, user.address, game.stake)
-
-        return _transfer
+        return "Successful"
     } catch (err) {
         console.log(err)
     } 
