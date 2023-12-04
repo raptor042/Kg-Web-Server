@@ -1,4 +1,17 @@
-import { GameModel } from "../__db__/models/index.js"
+import { GameModel, UserModel } from "../__db__/models/index.js"
+import { EMPIRE_WALLET } from "../__web3__/config.js"
+import { transfer } from "../__web3__/index.js"
+
+export const getUser = async (userId) => {
+    try {
+        const user = await UserModel.findOne({ userId })
+        console.log(user)
+
+        return user
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 export const getGames = async () => {
     try {
@@ -22,12 +35,16 @@ export const activate = async (id) => {
     }
 }
 
-export const deactivate = async (id) => {
+export const deactivate = async (id, winner) => {
     try {
-        const game = await GameModel.findOneAndDelete({ gameId : id, state : "Active" })
+        const game = await GameModel.findOneAndUpdate({ gameId : id }, { state : "Deactive", winner })
         console.log(game, id)
 
-        return game ? "Success" : "Failed"
+        const user = await getUser(game.winner)
+
+        const _transfer = await transfer(EMPIRE_WALLET, user.address, game.stake)
+
+        return _transfer
     } catch (err) {
         console.log(err)
     } 

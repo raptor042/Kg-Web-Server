@@ -17,6 +17,11 @@ const UserSchema = new Schema({
 export const UserModel = model("User", UserSchema)
 
 const GameSchema = new Schema({
+    winner : Number,
+    stake : { 
+        type : Number,
+        default : 0
+    },
     gameId : { 
         type : String, 
         required : true 
@@ -30,7 +35,7 @@ const GameSchema = new Schema({
     ],
     state : {
         type : String, 
-        enum : ["Active", "Inactive"], 
+        enum : ["Active", "Inactive", "Deactive"], 
         default : "Inactive"
     },
     duration : { 

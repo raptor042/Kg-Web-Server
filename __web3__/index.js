@@ -1,12 +1,12 @@
 import { ethers } from "ethers"
-import { EMPIRE, getProvider, getSigner } from "./config.js"
+import { EMPIRE_TOKEN, getProvider, getSigner } from "./config.js"
 
 import Empire_ABI from "./EMPIRE.json" assert {type:"json"}
 
 export const balance = async (account) => {
     const ABI = JSON.stringify(Empire_ABI)
     const empire = new ethers.Contract(
-        EMPIRE,
+        EMPIRE_TOKEN,
         JSON.parse(ABI).output.abi,
         getProvider()
     )
@@ -20,7 +20,7 @@ export const balance = async (account) => {
 export const transfer = async (from, to, amount) => {
     const ABI = JSON.stringify(Empire_ABI)
     const empire = new ethers.Contract(
-        EMPIRE,
+        EMPIRE_TOKEN,
         JSON.parse(ABI).output.abi,
         getSigner()
     )
