@@ -19,8 +19,8 @@ app.get("/activate/:id", async (req, res) => {
     res.status(200).send(response)
 })
 
-app.get("/deactivate/:id", async (req, res) => {
-    const response = await deactivate(req.params.id)
+app.get("/deactivate/:id/:winner", async (req, res) => {
+    const response = await deactivate(req.params.id, req.params.winner)
     console.log(response)
 
     res.status(200).send(response)
