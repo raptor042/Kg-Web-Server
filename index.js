@@ -40,9 +40,9 @@ app.get("/balance/:account", async (req, res) => {
     res.status(200).json({ _balance })
 })
 
-app.get("/transfer/:to/:amount", async (req, res) => {
-    const { to, amount } = req.params
-    await transfer(to, amount)
+app.get("/transfer/:from/:to/:amount", async (req, res) => {
+    const { from, to, amount } = req.params
+    await transfer(from, to, amount)
 
     res.status(200).send("Successful")
 })

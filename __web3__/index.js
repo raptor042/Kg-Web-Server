@@ -17,7 +17,7 @@ export const balance = async (account) => {
     return ethers.formatEther(balanceOf)
 }
 
-export const transfer = async (to, amount) => {
+export const transfer = async (from, to, amount) => {
     const ABI = JSON.stringify(Empire_ABI)
     const empire = new ethers.Contract(
         EMPIRE,
@@ -26,7 +26,8 @@ export const transfer = async (to, amount) => {
     )
     console.log(ethers.formatEther(await empire.totalSupply()))
 
-    await empire.transfer(
+    await empire.transferFrom(
+        from,
         to,
         ethers.parseEther(amount)
     )
